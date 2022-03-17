@@ -27,6 +27,8 @@
 	NETWORK="jira_fastlane"
 	RESTART="always"
 	
+	docker network create -d bridge $NETWORK
+	
 #	  .--.      .-'
 #	:::::.\::::::::
 #	░░█ █ █▀█ ▄▀█ ▀
