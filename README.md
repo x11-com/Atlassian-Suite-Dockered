@@ -20,239 +20,250 @@
 #	JIRA, SERVICE, CONFLUENCE, FISHEYE, CROWD, BITBUCKET, BAMBOO & POSTGRES DB
 #	===========================================================================
 
-######### READY #########
+##### GLOBALS #####
 
-QUICK START:
+	PASSWORD = "changeme"	
+	NETWORK = "jira_fastlane"
+	RESTART = "always"
 
-sudo apt-get install zenity		# <-- GUI
-
-PASSWORD = "changeme"			# <-- globals
-NETWORK = "jira_fastlane"		# <-- globals
-RESTART = "always"				# <-- globals
+# ===================================
 
 #	░░█ █ █▀█ ▄▀█ ▀
 #	█▄█ █ █▀▄ █▀█ ▄
 #	LOCALHOST: http://localhost:8080/
 #	DATABASE: -database jira_db -host jira_db -user jira_db_user -password changeme -port 5432
 
-########## READY ##########
+####### READY #####
 
-	host = "jira"						# <-- varible
-	port = "8080"						# <-- varible
-	image = "atlassian/jira-software"	# <-- varible
-	password=$PASSWORD					# <-- override
-	network=$NETWORK					# <-- override
-	restart=$RESTART					# <-- override
+	host = "jira"		
+	port = "8080"		
+	image = "atlassian/jira-software"
+	password=$PASSWORD
+	network=$NETWORK
+	restart=$RESTART
 
-########## SET ##########
+####### SET #####
 
-	volume = "${host}_volume"			# <-- varible
-	dbvolume = "${host}_db_volume"		# <-- varible
-	dbhost = "${host}_db"				# <-- varible
-	database = "{host}_db"				# <-- varible
-	dbuser = "{host}_db_user"			# <-- varible
-	dbimage = "postgres"				# <-- varible
-	port = "${port}:8080"				# <-- override
+	volume = "${host}_volume"		
+	dbvolume = "${host}_db_volume"	
+	dbhost = "${host}_db"
+	database = "{host}_db"
+	dbuser = "{host}_db_user"		
+	dbimage = "postgres"
+	port = "${port}:8080"
 
-########## GO ##########
+####### GO #####
 
 	docker volume create --name $dbvolume
 	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
 	docker run -v $volume:/var/atlassian/application-data/jira --name=$host --network = $network --restart = $restart -d -p $port image
 
-####### FINISHED #######
+#### FINISHED ####
+
+# ===================================
 
 #	█▀ █▀▀ █▀█ █░█ █ █▀▀ █▀▀ ▀
 #	▄█ ██▄ █▀▄ ▀▄▀ █ █▄▄ ██▄ ▄
 #	LOCALHOST: http://localhost:8080/
 #	DATABASE: -database service_db -host service_db -user service_db_user -password changeme -port 5432
 
-########## READY ##########
+####### READY #####
 
-	host = "service"						# <-- varible
-	port = "8080"						# <-- varible
-	image = "atlassian/service-software"	# <-- varible
-	password=$PASSWORD					# <-- override
-	network=$NETWORK					# <-- override
-	restart=$RESTART					# <-- override
+	host = "service"		
+	port = "8080"		
+	image = "atlassian/service-software"
+	password=$PASSWORD
+	network=$NETWORK
+	restart=$RESTART
 
-########## SET ##########
+####### SET #####
 
-	volume = "${host}_volume"			# <-- varible
-	dbvolume = "${host}_db_volume"		# <-- varible
-	dbhost = "${host}_db"				# <-- varible
-	database = "{host}_db"				# <-- varible
-	dbuser = "{host}_db_user"			# <-- varible
-	dbimage = "postgres"				# <-- varible
-	port = "${port}:8080"				# <-- override
+	volume = "${host}_volume"		
+	dbvolume = "${host}_db_volume"	
+	dbhost = "${host}_db"
+	database = "{host}_db"
+	dbuser = "{host}_db_user"		
+	dbimage = "postgres"
+	port = "${port}:8080"
 
-########## GO ##########
+####### GO #####
 
 	docker volume create --name $dbvolume
 	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
 	docker run -v $volume:/var/atlassian/application-data/jira --name=$host --network = $network --restart = $restart -d -p $port image
 
-####### FINISHED #######
+#### FINISHED ####
+
+# ===================================
 
 #	█▀▀ █▀█ █▄░█ █▀▀ █░░ █░█ █▀▀ █▄░█ █▀▀ █▀▀ ▀
 #	█▄▄ █▄█ █░▀█ █▀░ █▄▄ █▄█ ██▄ █░▀█ █▄▄ ██▄ ▄
 #	LOCALHOST: http://localhost:8080/
 #	DATABASE: -database confluence_db -host confluence_db -user confluence_db_user -password changeme -port 5432
 
-########## READY ##########
+####### READY #####
 
-	host = "confluence"						# <-- varible
-	port = "8080"						# <-- varible
-	image = "atlassian/confluence-server"	# <-- varible
-	password=$PASSWORD					# <-- override
-	network=$NETWORK					# <-- override
-	restart=$RESTART					# <-- override
+	host = "confluence"		
+	port = "8080"		
+	image = "atlassian/confluence-server"
+	password=$PASSWORD
+	network=$NETWORK
+	restart=$RESTART
 
-########## SET ##########
+####### SET #####
 
-	volume = "${host}_volume"			# <-- varible
-	dbvolume = "${host}_db_volume"		# <-- varible
-	dbhost = "${host}_db"				# <-- varible
-	database = "{host}_db"				# <-- varible
-	dbuser = "{host}_db_user"			# <-- varible
-	dbimage = "postgres"				# <-- varible
-	port = "${port}:8080"				# <-- override
+	volume = "${host}_volume"		
+	dbvolume = "${host}_db_volume"	
+	dbhost = "${host}_db"
+	database = "{host}_db"
+	dbuser = "{host}_db_user"		
+	dbimage = "postgres"
+	port = "${port}:8080"
 
-########## GO ##########
+####### GO #####
 
 	docker volume create --name $dbvolume
 	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
 	docker run -v $volume:/var/atlassian/application-data/confluence --name=$host --network = $network --restart = $restart -d -p $port image
 
-####### FINISHED #######
+#### FINISHED ####
+
+# ===================================
 
 #	█▀▀ █ █▀ █░█ █▀▀ █▄█ █▀▀ ▀
 #	█▀░ █ ▄█ █▀█ ██▄ ░█░ ██▄ ▄
 #	LOCALHOST: http://localhost:8080/
 #	DATABASE: -database fisheye_db -host fisheye_db -user fisheye_db_user -password changeme -port 5432
 
-########## READY ##########
+####### READY #####
 
-	host = "fisheye"						# <-- varible
-	port = "8080"						# <-- varible
-	image = "atlassian/fisheye"	# <-- varible
-	password=$PASSWORD					# <-- override
-	network=$NETWORK					# <-- override
-	restart=$RESTART					# <-- override
+	host = "fisheye"		
+	port = "8080"		
+	image = "atlassian/fisheye"
+	password=$PASSWORD
+	network=$NETWORK
+	restart=$RESTART
 
-########## SET ##########
+####### SET #####
 
-	volume = "${host}_volume"			# <-- varible
-	dbvolume = "${host}_db_volume"		# <-- varible
-	dbhost = "${host}_db"				# <-- varible
-	database = "{host}_db"				# <-- varible
-	dbuser = "{host}_db_user"			# <-- varible
-	dbimage = "postgres"				# <-- varible
-	port = "${port}:8080"				# <-- override
+	volume = "${host}_volume"		
+	dbvolume = "${host}_db_volume"	
+	dbhost = "${host}_db"
+	database = "{host}_db"
+	dbuser = "{host}_db_user"		
+	dbimage = "postgres"
+	port = "${port}:8080"
 
-########## GO ##########
+####### GO #####
 
 	docker volume create --name $dbvolume
 	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
 	docker run -v $volume:/atlassian/data/fisheye --name=$host --network = $network --restart = $restart -d -p $port image
 
-####### FINISHED #######
+#### FINISHED ####
+
+# ===================================
 
 #	█▀▀ █▀█ █▀█ █░█░█ █▀▄ ▀
 #	█▄▄ █▀▄ █▄█ ▀▄▀▄▀ █▄▀ ▄
 #	LOCALHOST: http://localhost:8080/
 #	DATABASE: -database crowd_db -host crowd_db -user crowd_db_user -password changeme -port 5432
 
-########## READY ##########
+####### READY #####
 
-	host = "crowd"						# <-- varible
-	port = "8080"						# <-- varible
-	image = "atlassian/crowd"	# <-- varible
-	password=$PASSWORD					# <-- override
-	network=$NETWORK					# <-- override
-	restart=$RESTART					# <-- override
+	host = "crowd"		
+	port = "8080"		
+	image = "atlassian/crowd"
+	password=$PASSWORD
+	network=$NETWORK
+	restart=$RESTART
 
-########## SET ##########
+####### SET #####
 
-	volume = "${host}_volume"			# <-- varible
-	dbvolume = "${host}_db_volume"		# <-- varible
-	dbhost = "${host}_db"				# <-- varible
-	database = "{host}_db"				# <-- varible
-	dbuser = "{host}_db_user"			# <-- varible
-	dbimage = "postgres"				# <-- varible
-	port = "${port}:8080"				# <-- override
+	volume = "${host}_volume"		
+	dbvolume = "${host}_db_volume"	
+	dbhost = "${host}_db"
+	database = "{host}_db"
+	dbuser = "{host}_db_user"		
+	dbimage = "postgres"
+	port = "${port}:8080"
 
-########## GO ##########
+####### GO #####
 
 	docker volume create --name $dbvolume
 	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
 	docker run -v $volume:/var/atlassian/application-data/crowd --name=$host --network = $network --restart = $restart -d -p $port image
 
-####### FINISHED #######
+#### FINISHED ####
+
+# ===================================
 
 #	█▄▄ █ ▀█▀ █▄▄ █░█ █▀▀ █▄▀ █▀▀ ▀█▀ ▀
 #	█▄█ █ ░█░ █▄█ █▄█ █▄▄ █░█ ██▄ ░█░ ▄
 #	LOCALHOST: http://localhost:8080/
 #	DATABASE: -database bitbucket_db -host bitbucket_db -user bitbucket_db_user -password changeme -port 5432
 
-########## READY ##########
+####### READY #####
 
-	host = "bitbucket"						# <-- varible
-	port = "7990"						# <-- varible
-	image = "atlassian/bitbucket-server"	# <-- varible
-	password=$PASSWORD					# <-- override
-	network=$NETWORK					# <-- override
-	restart=$RESTART					# <-- override
+	host = "bitbucket"		
+	port = "7990"		
+	image = "atlassian/bitbucket-server"
+	password=$PASSWORD
+	network=$NETWORK
+	restart=$RESTART
 
-########## SET ##########
+####### SET #####
 
-	volume = "${host}_volume"			# <-- varible
-	dbvolume = "${host}_db_volume"		# <-- varible
-	dbhost = "${host}_db"				# <-- varible
-	database = "{host}_db"				# <-- varible
-	dbuser = "{host}_db_user"			# <-- varible
-	dbimage = "postgres"				# <-- varible
-	port = "${port}:7990"				# <-- override
+	volume = "${host}_volume"		
+	dbvolume = "${host}_db_volume"	
+	dbhost = "${host}_db"
+	database = "{host}_db"
+	dbuser = "{host}_db_user"		
+	dbimage = "postgres"
+	port = "${port}:7990"
 
-########## GO ##########
+####### GO #####
 
 	docker volume create --name $dbvolume
 	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
 	docker run -v $volume:/var/atlassian/application-data/bitbucket --name=$host --network = $network --restart = $restart -d -p $port image
 
-####### FINISHED #######
+#### FINISHED ####
+
+# ===================================
 
 #	█▄▄ ▄▀█ █▀▄▀█ █▄▄ █▀█ █▀█ ▀
 #	█▄█ █▀█ █░▀░█ █▄█ █▄█ █▄█ ▄
 #	LOCALHOST: http://localhost:8085/
 #	DATABASE: -database bamboo_db -host bamboo_db -user bamboo_db_user -password changeme -port 5432
 
-########## READY ##########
+####### READY #####
 
-	host = "bamboo"						# <-- varible
-	port = "8085"						# <-- varible
-	image = "atlassian/bamboo-server"	# <-- varible
-	password=$PASSWORD					# <-- override
-	network=$NETWORK					# <-- override
-	restart=$RESTART					# <-- override
+	host = "bamboo"		
+	port = "8085"		
+	image = "atlassian/bamboo-server"
+	password=$PASSWORD
+	network=$NETWORK
+	restart=$RESTART
 
-########## SET ##########
+####### SET #####
 
-	volume = "${host}_volume"			# <-- varible
-	dbvolume = "${host}_db_volume"		# <-- varible
-	dbhost = "${host}_db"				# <-- varible
-	database = "{host}_db"				# <-- varible
-	dbuser = "{host}_db_user"			# <-- varible
-	dbimage = "postgres"				# <-- varible
-	port = "${port}:8085"				# <-- override
+	volume = "${host}_volume"		
+	dbvolume = "${host}_db_volume"	
+	dbhost = "${host}_db"
+	database = "{host}_db"
+	dbuser = "{host}_db_user"		
+	dbimage = "postgres"
+	port = "${port}:8085"
 
-########## GO ##########
+####### GO #####
 
 	docker volume create --name $dbvolume
 	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
 	docker run -v $volume:/var/atlassian/application-data/bamboo  --name=$host --network = $network --restart = $restart -d -p $port image
 
 ```
+
 
 ![image](https://user-images.githubusercontent.com/6468571/158800560-a2275687-6e5e-451c-a160-0c5debbd8388.png)
 
