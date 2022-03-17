@@ -1,7 +1,7 @@
 # Atlassian-Suite-Dockered
 ![image](https://user-images.githubusercontent.com/6468571/158800664-c2152886-7203-4152-93fd-e6a78394179a.png)
 
-⏫Atlassian Suite (Complete) Dockered (from source) Atlassian (Authentic) Jira Software, Jira Service Management, Confluence, Fisheye, Crowd, Bitbucket and Bamboo with latest Postgres DB's
+⏫ Atlassian Suite (Complete) Dockered (from source) Atlassian (Authentic) Jira Software, Jira Service Management, Confluence, Fisheye, Crowd, Bitbucket and Bamboo with latest Postgres DB's
 
 ![image](https://user-images.githubusercontent.com/6468571/158800426-8c7c3858-bb3c-4525-b2ce-b636a37fb24b.png)
 
@@ -21,12 +21,12 @@
 #	JIRA, SERVICE, CONFLUENCE, FISHEYE, CROWD, BITBUCKET, BAMBOO & POSTGRES DB
 #	===========================================================================
 
-#	⏫ GLOBALS:
+#	 GLOBALS:
 
 	PASSWORD="changeme"	
 	NETWORK="jira_fastlane"
 	RESTART="always"
-
+	
 #	  .--.      .-'
 #	:::::.\::::::::
 #	░░█ █ █▀█ ▄▀█ ▀
