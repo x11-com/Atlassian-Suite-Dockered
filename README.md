@@ -29,14 +29,12 @@
 
 #	  .--.      .-'
 #	:::::.\::::::::
-#	✦✧✦✧✦✧✦✧✦✧✦
 #	░░█ █ █▀█ ▄▀█ ▀
 #	█▄█ █ █▀▄ █▀█ ▄
-#	✦✧✦✧✦✧✦✧✦✧✦
 #	:::::.\::::::::
 #	'      `--'    
 
-#	🚦 READY?
+#	READY?
 
 	host="jira"		
 	port="8080"		
@@ -47,7 +45,7 @@
 
 	echo "host: ${host} | port: ${host} | image: ${image} | password: ${password} | network: ${network} | restart: ${restart}"
 
-#	⛔ SET
+#	SET
 
 	volume="${host}_volume"		
 	dbvolume="${host}_db_volume"	
@@ -59,24 +57,22 @@
 
 	echo "volume: ${volume} | dbvolume: ${dbvolume} | dbhost: ${dbhost} | database: ${database} | dbuser: ${dbuser} | dbimage: ${dbimage} | port: ${port}"
 
-#	🚥 GO
+#	GO
 
 	docker volume create --name $dbvolume
-	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
-	docker run -v $volume:/var/atlassian/application-data/jira --name=$host --network=$network --restart=$restart -d -p $port image
+	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart $dbimage
+	docker run -v $volume:/var/atlassian/application-data/jira --name=$host --network=$network --restart=$restart -d -p $port $image
 
 #	🏁 FINISHED
 
 #	  .--.      .-'.      .-
 #	:::::.\::::::::.\:::::::
-#	✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
 #	█▀ █▀▀ █▀█ █░█ █ █▀▀ █▀▀ ▀
 #	▄█ ██▄ █▀▄ ▀▄▀ █ █▄▄ ██▄ ▄
-#	✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
 #	:::::.\::::::::.\:::::::
 #	'     `--'      `.-'   
 
-#	🚦 READY?
+#	READY?
 
 	host="service"		
 	port="8080"		
@@ -87,7 +83,7 @@
 
 	echo "host: ${host} | port: ${host} | image: ${image} | password: ${password} | network: ${network} | restart: ${restart}"
 
-#	⛔ SET
+#	SET
 
 	volume="${host}_volume"		
 	dbvolume="${host}_db_volume"	
@@ -99,24 +95,22 @@
 
 	echo "volume: ${volume} | dbvolume: ${dbvolume} | dbhost: ${dbhost} | database: ${database} | dbuser: ${dbuser} | dbimage: ${dbimage} | port: ${port}"
 
-#	🚥 GO
+#	GO
 
 	docker volume create --name $dbvolume
-	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
-	docker run -v $volume:/var/atlassian/application-data/jira --name=$host --network=$network --restart=$restart -d -p $port image
+	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart $dbimage
+	docker run -v $volume:/var/atlassian/application-data/jira --name=$host --network=$network --restart=$restart -d -p $port $image
 
 #	🏁 FINISHED
 
 #	  .--.      .-'.      .-.      .-'.      .-
-#	:::::.\::::::::.\:::::::.\::::::::.\:::::::
-#	✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦
+#	:::::.\::::::::.\:::::::.\::::::::.\::::::
 #	█▀▀ █▀█ █▄░█ █▀▀ █░░ █░█ █▀▀ █▄░█ █▀▀ █▀▀ ▀
 #	█▄▄ █▄█ █░▀█ █▀░ █▄▄ █▄█ ██▄ █░▀█ █▄▄ ██▄ ▄
-#	✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦
 #	:::::.\::::::::.\:::::::.\::::::::.\:::::::
 #	'      `--'      `.-'     `--'      `.-'   
 
-#	🚦 READY?
+#	READY?
 
 	host="confluence"		
 	port="8080"		
@@ -127,7 +121,7 @@
 
 	echo "host: ${host} | port: ${host} | image: ${image} | password: ${password} | network: ${network} | restart: ${restart}"
 
-#	⛔ SET
+#	SET
 
 	volume="${host}_volume"		
 	dbvolume="${host}_db_volume"	
@@ -139,24 +133,22 @@
 
 	echo "volume: ${volume} | dbvolume: ${dbvolume} | dbhost: ${dbhost} | database: ${database} | dbuser: ${dbuser} | dbimage: ${dbimage} | port: ${port}"
 
-#	🚥 GO
+#	GO
 
 	docker volume create --name $dbvolume
-	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
-	docker run -v $volume:/var/atlassian/application-data/confluence --name=$host --network=$network --restart=$restart -d -p $port image
+	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart $dbimage
+	docker run -v $volume:/var/atlassian/application-data/confluence --name=$host --network=$network --restart=$restart -d -p $port $image
 
-#	🏁	FINISHED
+#	FINISHED
 
 #	  .--.      .-'.      .
 #	:::::.\::::::::.\::::::
-#	✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
 #	█▀▀ █ █▀ █░█ █▀▀ █▄█ █▀▀ ▀
 #	█▀░ █ ▄█ █▀█ ██▄ ░█░ ██▄ ▄
-#	✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
 #	:::::.\::::::::.\::::::
 #	'      `--'      `.-'  
 
-#	🚦 READY?
+#	READY?
 
 	host="fisheye"		
 	port="8080"		
@@ -167,7 +159,7 @@
 
 	echo "host: ${host} | port: ${host} | image: ${image} | password: ${password} | network: ${network} | restart: ${restart}"
 
-#	⛔ SET
+#	SET
 
 	volume="${host}_volume"		
 	dbvolume="${host}_db_volume"	
@@ -179,24 +171,22 @@
 
 	echo "volume: ${volume} | dbvolume: ${dbvolume} | dbhost: ${dbhost} | database: ${database} | dbuser: ${dbuser} | dbimage: ${dbimage} | port: ${port}"
 
-#	🚥 GO
+#	GO
 
 	docker volume create --name $dbvolume
-	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
-	docker run -v $volume:/atlassian/data/fisheye --name=$host --network=$network --restart=$restart -d -p $port image
+	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart $dbimage
+	docker run -v $volume:/atlassian/data/fisheye --name=$host --network=$network --restart=$restart -d -p $port $image
 
-#	🏁	FINISHED
+#	FINISHED
 
 #	  .--.      .-'.      .
 #	:::::.\::::::::.\::::::
-#	✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
 #	█▀▀ █▀█ █▀█ █░█░█ █▀▄ ▀
 #	█▄▄ █▀▄ █▄█ ▀▄▀▄▀ █▄▀ ▄
-#	✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
 #	:::::.\::::::::.\::::::
 #	'      `--'      `.-' 
  
-#	🚦 READY?
+#	READY?
 
 	host="crowd"		
 	port="8080"		
@@ -207,7 +197,7 @@
 
 	echo "host: ${host} | port: ${host} | image: ${image} | password: ${password} | network: ${network} | restart: ${restart}"
 
-#	⛔ SET
+#	SET
 
 	volume="${host}_volume"		
 	dbvolume="${host}_db_volume"	
@@ -219,24 +209,22 @@
 
 	echo "volume: ${volume} | dbvolume: ${dbvolume} | dbhost: ${dbhost} | database: ${database} | dbuser: ${dbuser} | dbimage: ${dbimage} | port: ${port}"
 
-#	🚥 GO
+#	GO
 
 	docker volume create --name $dbvolume
-	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
-	docker run -v $volume:/var/atlassian/application-data/crowd --name=$host --network=$network --restart=$restart -d -p $port image
+	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart $dbimage
+	docker run -v $volume:/var/atlassian/application-data/crowd --name=$host --network=$network --restart=$restart -d -p $port $image
 
-#	🏁	FINISHED
+#	FINISHED
 
 #	  .--.      .-'.      .-.      .-'.
 #	:::::.\::::::::.\:::::::.\::::::::.
-#	✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
 #	█▄▄ █ ▀█▀ █▄▄ █░█ █▀▀ █▄▀ █▀▀ ▀█▀ ▀
 #	█▄█ █ ░█░ █▄█ █▄█ █▄▄ █░█ ██▄ ░█░ ▄
-#	✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
 #	:::::.\::::::::.\:::::::.\::::::::.
 #	'      `--'      `.-'     `--'     
 
-#	🚦 READY?
+#	READY?
 
 	host="bitbucket"		
 	port="7990"		
@@ -247,7 +235,7 @@
 
 	echo "host: ${host} | port: ${host} | image: ${image} | password: ${password} | network: ${network} | restart: ${restart}"
 
-#	⛔ SET
+#	SET
 
 	volume="${host}_volume"		
 	dbvolume="${host}_db_volume"	
@@ -259,24 +247,22 @@
 
 	echo "volume: ${volume} | dbvolume: ${dbvolume} | dbhost: ${dbhost} | database: ${database} | dbuser: ${dbuser} | dbimage: ${dbimage} | port: ${port}"
 
-#	🚥 GO
+#	GO
 
 	docker volume create --name $dbvolume
-	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
-	docker run -v $volume:/var/atlassian/application-data/bitbucket --name=$host --network=$network --restart=$restart -d -p $port image
+	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart $dbimage
+	docker run -v $volume:/var/atlassian/application-data/bitbucket --name=$host --network=$network --restart=$restart -d -p $port $image
 
-#	🏁	FINISHED
+#	FINISHED
 
 #	  .--.      .-'.      .-.  
 #	:::::.\::::::::.\:::::::.\:
-#	✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦
 #	█▄▄ ▄▀█ █▀▄▀█ █▄▄ █▀█ █▀█ ▀
 #	█▄█ █▀█ █░▀░█ █▄█ █▄█ █▄█ ▄
-#	✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦
 #	:::::.\::::::::.\:::::::.\:
 #	'      `--'      `.-'     `
 
-#	🚦 READY?
+#	READY?
 
 	host="bamboo"		
 	port="8085"		
@@ -287,7 +273,7 @@
 
 	echo "host: ${host} | port: ${host} | image: ${image} | password: ${password} | network: ${network} | restart: ${restart}"
 
-#	⛔ SET
+#	SET
 
 	volume="${host}_volume"		
 	dbvolume="${host}_db_volume"	
@@ -299,11 +285,11 @@
 
 	echo "volume: ${volume} | dbvolume: ${dbvolume} | dbhost: ${dbhost} | database: ${database} | dbuser: ${dbuser} | dbimage: ${dbimage} | port: ${port}"
 
-#	🚥 GO
+#	GO
 
 	docker volume create --name $dbvolume
-	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart dbimage
-	docker run -v $volume:/var/atlassian/application-data/bamboo  --name=$host --network=$network --restart=$restart -d -p $port image
+	docker run -v $dbvolume:/var/lib/postgresql/data --name $dbhost -d -e 'POSTGRES_DB=$database' -e 'POSTGRES_USER=$dbuser' -e 'POSTGRES_PASSWORD=$password' --network=$network --restart=$restart $dbimage
+	docker run -v $volume:/var/atlassian/application-data/bamboo  --name=$host --network=$network --restart=$restart -d -p $port $image
 
 [ whereis my brain?
 
@@ -313,4 +299,3 @@
 
 
 ![image](https://user-images.githubusercontent.com/6468571/158800519-39280a0c-a555-4c2e-8d67-0632148204c0.png)
- 
