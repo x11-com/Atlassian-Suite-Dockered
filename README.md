@@ -306,7 +306,7 @@ Simply modify the variables and copy and paste them into your terminal, or save 
 
 ![image](https://user-images.githubusercontent.com/6468571/158800426-8c7c3858-bb3c-4525-b2ce-b636a37fb24b.png)
 
-# Detailed Profuct Overview
+# Detailed Product Overview
 
 By following the link provided below, you may obtain a thorough description of all of the products contained in the installation script.
 
